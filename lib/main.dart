@@ -49,37 +49,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  //void _incrementCounter() {
-    //setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      //_counter++;
-    //});
   bool isInitialized = false;
   @override
   void initState() {
-    FlutterMobileVision.start().then((value){
+    FlutterMobileVision.start().then((value) {
       isInitialized = true;
     });
     super.initState();
   }
-  _startScan()async{
+
+  _startScan() async {
     List<OcrText> list = List();
-    try{
+
+    try {
       list = await FlutterMobileVision.read(
         waitTap: true,
         fps: 5,
       );
-      for(OcrText text in list){
-        print('values is ${text.value}');
+      for (OcrText text in list) {
+        print('value is ${text.value}');
       }
-    }catch(e){
-
-    }
+    } catch (e) {}
   }
+  
+  
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
